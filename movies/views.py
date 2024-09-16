@@ -4,11 +4,13 @@ from django.shortcuts import render
 
 def movies(request):
     # return HttpResponse("hello there")
-    return render(
-        request, 
-        'movies/movies.html', {
+    data = {
             'movies': ['movie1', 'movie2']
         }
+
+    return render(
+        request, 
+        'movies/movies.html', data
     )
 
 def home(request):
