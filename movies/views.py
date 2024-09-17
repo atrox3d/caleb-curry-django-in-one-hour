@@ -8,7 +8,7 @@ def movies(request):
     data = Movie.objects.all()
     return render(
         request, 
-        'movies/movies.html', data
+        'movies/movies.html', {'movies': data}
     )
 
 def home(request):
