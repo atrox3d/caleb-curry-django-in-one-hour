@@ -38,3 +38,8 @@ def add(request:HttpRequest):
         request,
         'movies/add.html'
     )
+
+def delete(request, id):
+    movie = Movie.objects.get(pk=id)
+    movie.delete()
+    return HttpResponseRedirect('/movies')
