@@ -1,5 +1,5 @@
 from turtle import title
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Movie
 
@@ -40,6 +40,9 @@ def add(request:HttpRequest):
     )
 
 def delete(request, id):
-    movie = Movie.objects.get(pk=id)
+    try:
+        movie = Movie.objects.get(pk=id)
+    except:
+        raise Http404(f'Movie {id} does not exist')
     movie.delete()
     return HttpResponseRedirect('/movies')
